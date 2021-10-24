@@ -1,2 +1,2 @@
 # PropertyIterception
-Cauldron like Property-Iterception using C# Source Generators
+Cauldron like Property-Interception using C# Source Generators
