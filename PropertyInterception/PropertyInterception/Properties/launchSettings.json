@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Debug Examples": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\PropertyInterception.Examples\\PropertyInterception.Examples.csproj"
+    }
+  }
+}
