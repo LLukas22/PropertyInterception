@@ -6,6 +6,9 @@ namespace PropertyInterception.Interfaces
 {
     public interface IExitInterceptor
     {
-        void OnExit();
+        /// <summary>
+        /// Gets triggered after a Setter/Getter is exited.
+        /// </summary>
+        void OnExit(PropertyInterceptionInfo propertyInterceptionInfo);
     }
 }

@@ -1,35 +1,31 @@
 ﻿using PropertyInterception.Interfaces;
+using PropertyInterception.Tests.GeneratorTargets;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PropertyInterception.Examples.Attributes
+namespace PropertyInterception.Tests.Attributes
 {
-    [AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
     internal class ExceptionAttribute : Attribute, IPropertyGetterInterceptor, IPropertySetterInterceptor
     {
-        public bool OnException(Exception exception)
+        public bool OnException(PropertyInterceptionInfo propertyInterceptionInfo,Exception exception)
         {
-            if (exception.Message == "foobar")
-                return false;
-            return true;
+            (propertyInterceptionInfo.Instance as DummyObject).TriggeredException = true;
+            //Void the Exception
+            return false;
         }
 
         public void OnExit(PropertyInterceptionInfo propertyInterceptionInfo)
         {
-            
+           
         }
 
         public void OnGet(PropertyInterceptionInfo propertyInterceptionInfo, object currentValue)
         {
-            
+            throw new Exception();
         }
 
         public bool OnSet(PropertyInterceptionInfo propertyInterceptionInfo, object oldValue, object newValue)
         {
-            throw new Exception("foobar");
+            throw new Exception();
         }
     }
 }

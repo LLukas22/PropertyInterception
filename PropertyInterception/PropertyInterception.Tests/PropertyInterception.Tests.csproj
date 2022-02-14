@@ -6,10 +6,7 @@
   </PropertyGroup>
 	
 	<ItemGroup>
-		<ProjectReference
-			Include="..\PropertyInterception\PropertyInterception.csproj"
-			OutputItemType="Analyzer"
-			ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\PropertyInterception\PropertyInterception.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
     </ItemGroup>
 	
   <ItemGroup>

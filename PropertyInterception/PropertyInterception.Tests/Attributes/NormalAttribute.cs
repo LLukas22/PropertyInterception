@@ -1,33 +1,32 @@
 ﻿using PropertyInterception.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PropertyInterception.Examples.Attributes
+namespace PropertyInterception.Tests.Attributes
 {
     [AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
-    public class HelloWorldAttribute : Attribute, IPropertyGetterInterceptor,IPropertySetterInterceptor
+    internal class NormalAttribute : Attribute, IPropertyGetterInterceptor, IPropertySetterInterceptor
     {
-        public HelloWorldAttribute()
+        public bool OnException(PropertyInterceptionInfo propertyInterceptionInfo,Exception exception)
         {
-
-        }
-        public bool OnException(Exception exception)
-        {
-            return false;
+            return true;
         }
 
         public void OnExit(PropertyInterceptionInfo propertyInterceptionInfo)
         {
-            Console.WriteLine("[OnExit] Hello World from Attribute!");
+            
         }
 
         public void OnGet(PropertyInterceptionInfo propertyInterceptionInfo, object currentValue)
         {
-            Console.WriteLine("[OnGet] Hello World from Attribute!");
+           
         }
 
         public bool OnSet(PropertyInterceptionInfo propertyInterceptionInfo, object oldValue, object newValue)
         {
-            Console.WriteLine("[OnSet] Hello World from Attribute!");
             return true;
         }
     }

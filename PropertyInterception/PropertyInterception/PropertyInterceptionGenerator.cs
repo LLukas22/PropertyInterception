@@ -133,12 +133,12 @@ namespace {namespaceName}
                 }}
                 catch (Exception e)
                 {{
-                    if({attribute_name}.OnException(e))
+                    if({attribute_name}.OnException(this.{propertyInterceptionInfo},e))
                         throw;
                 }}
                 finally
                 {{
-                    {attribute_name}.OnExit();
+                    {attribute_name}.OnExit(this.{propertyInterceptionInfo});
                 }}
         ";
         }
@@ -160,14 +160,14 @@ namespace {namespaceName}
                 }}
                 catch (Exception e)
                 {{
-                    if({attribute_name}.OnException(e))
+                    if({attribute_name}.OnException(this.{propertyInterceptionInfo},e))
                         throw;
                     else
                         return this.{fieldContainer.FieldSymbol.Name};
                 }}
                 finally
                 {{
-                    {attribute_name}.OnExit();
+                    {attribute_name}.OnExit(this.{propertyInterceptionInfo});
                 }}
         ";
         }

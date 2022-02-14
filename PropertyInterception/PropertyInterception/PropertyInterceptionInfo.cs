@@ -28,10 +28,25 @@ namespace PropertyInterception
         private FieldInfo field;
         public PropertyInterceptionInfo(object instace,string propertyName)
         {
+            if(instace == null)
+            {
+                throw new ArgumentException($"Instace can't be null!");
+            }
+
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentException($"Propertyname can't be empty!");
+            }
+
             this.Instance = instace;
             this.PropertyName = propertyName;
 
             field = DeclaringType.GetField(propertyName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if(field == null)
+            {
+                throw new ArgumentException($"Object of Type '{this.Instance.GetType()}' has no Field '{propertyName}'!");
+            }
         }
 
         /// <summary>
@@ -40,6 +55,14 @@ namespace PropertyInterception
         public object GetValue()
         {
             return field?.GetValue(Instance);
+        }
+
+        /// <summary>
+        /// Gets the current value of the Property
+        /// </summary>
+        public TTYpe GetValue<TTYpe>()
+        {
+            return (TTYpe)field?.GetValue(Instance);
         }
 
         /// <summary>
