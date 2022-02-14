@@ -11,6 +11,25 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
 	</ItemGroup>
+
+
+	<PropertyGroup>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<!-- Generates a package at build -->
+		<IncludeBuildOutput>true</IncludeBuildOutput>
+		<Description>Cauldron like Property-Interception using C# Source-Generators</Description>
+		<PackageProjectUrl>https://github.com/LLukas22/PropertyInterception</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/LLukas22/PropertyInterception</RepositoryUrl>
+		<PackageTags>source-generators;property-interception</PackageTags>
+		<Authors>Lukas Kreussel</Authors>
+		<!-- Include the generator as a lib dependency -->
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<!-- Package the generator in the analyzer directory of the nuget package -->
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
 	
 
 </Project>
